@@ -1,0 +1,9 @@
+# Runtime dependencies for the Cradilot console, engines and PDF compiler.
+# Verified on CPython 3.12.14. These are floors, not pins: install them and the
+# suite runs; the versions this snapshot was checked against are in the comment.
+fastapi>=0.115          # 0.142.2
+uvicorn>=0.30           # 0.54.0
+httpx>=0.27             # 0.28.1  every engine call: Ollama, Gemini, OpenAI-compatible
+pydantic>=2.7           # 2.13.5
+anyio>=4.0              # 4.15.1  off-thread probing so a slow engine never blocks a request
+typst>=0.13             # 0.15.0  compiles the 6-page blueprint; without it /api/report/pdf fails

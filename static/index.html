@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cradilot AI — SME Digital Growth Advisor</title>
+  <link rel="stylesheet" href="/static/css/apple_design.css" />
+</head>
+<body>
+
+  <!-- Progress Bar -->
+  <div class="progress-bar-container">
+    <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
+  </div>
+
+  <!-- Agent Flow Pipeline HUD (Business Agent Driver Navigation) -->
+  <div class="agent-flow-hud" id="agentFlowHud" style="display: none;">
+    <div class="flow-step-item" id="flowStep1" onclick="goTo(1)">
+      <div class="flow-step-num">1</div>
+      <span>Company profile</span>
+    </div>
+    <div class="flow-step-arrow">→</div>
+    <div class="flow-step-item" id="flowStep2" onclick="goTo(2)">
+      <div class="flow-step-num">2</div>
+      <span>Website check</span>
+    </div>
+    <div class="flow-step-arrow">→</div>
+    <div class="flow-step-item" id="flowStep3" onclick="goTo(3)">
+      <div class="flow-step-num">3</div>
+      <span>Guided interview</span>
+    </div>
+    <div class="flow-step-arrow">→</div>
+    <div class="flow-step-item" id="flowStep4" onclick="goTo(4)">
+      <div class="flow-step-num">4</div>
+      <span>Maturity scores</span>
+    </div>
+    <div class="flow-step-arrow">→</div>
+    <div class="flow-step-item" id="flowStep5" onclick="goTo(5)">
+      <div class="flow-step-num">5</div>
+      <span>Growth blueprint</span>
+    </div>
+  </div>
+
+  <!-- Top spatial HUD: brand comes from config, never from this file -->
+  <div class="spatial-top-hud" id="spatialTopHud">
+    <div class="hud-left">
+      <div class="hud-logo-tag">{{VENDOR_NAME}} × Cradilot</div>
+    </div>
+    <div class="hud-meta-bar">
+      <span class="hud-meta-item"><strong id="hudCompanyName"></strong></span>
+      <span class="hud-stage-pill" id="hudStagePill">Not started</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       STAGE 0: Landing / Hero
+       ═════════════════════════════════════════════════════════════════════ -->
+  <section class="stage active" id="stage-0">
+    <div class="stage-card liquid-glass hero-stage">
+      <div class="hero-badge">{{VENDOR_NAME}} × Cradilot AI</div>
+      <h1 class="hero-title">
+        5 Minutes to Find Your<br>
+        <span class="gradient-word">Digital Blind Spots</span>
+      </h1>
+      <p class="hero-subtitle">
+        AI-powered SME assessment. Real scores, real gaps, real solutions from {{VENDOR_NAME}}.
+        Zero generic advice — everything generated for your specific business.
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 12px; max-width: 340px; margin: 0 auto;">
+        <button class="btn btn-primary btn-lg" onclick="goTo(1)">
+          Start Free Assessment
+        </button>
+        <p class="footer-note">Powered by Cradilot AI · The analysis runs on this machine; your data is not sent elsewhere</p>
+      </div>
+
+      <div class="divider" style="margin: 32px 0 24px;"></div>
+
+      <!-- Feature pills -->
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+        <span style="font-size:12px; font-weight:600; color: var(--blue-deep); background: rgba(0,85,255,0.08); border: 1px solid rgba(0,85,255,0.18); padding: 5px 14px; border-radius: 999px;">Digital Maturity Score</span>
+        <span style="font-size:12px; font-weight:600; color: var(--blue-deep); background: rgba(0,85,255,0.08); border: 1px solid rgba(0,85,255,0.18); padding: 5px 14px; border-radius: 999px;">AI Readiness Score</span>
+        <span style="font-size:12px; font-weight:600; color: var(--blue-deep); background: rgba(0,85,255,0.08); border: 1px solid rgba(0,85,255,0.18); padding: 5px 14px; border-radius: 999px;">Live Tech Scraper</span>
+        <span style="font-size:12px; font-weight:600; color: var(--blue-deep); background: rgba(0,85,255,0.08); border: 1px solid rgba(0,85,255,0.18); padding: 5px 14px; border-radius: 999px;">ROI Financial Model</span>
+        <span style="font-size:12px; font-weight:600; color: var(--blue-deep); background: rgba(0,85,255,0.08); border: 1px solid rgba(0,85,255,0.18); padding: 5px 14px; border-radius: 999px;">Institutional PDF Blueprint</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       STAGE 1: Step 1 of 6 — Company Profile & Business Gaps (Live Cradilot AI)
+       ═════════════════════════════════════════════════════════════════════ -->
+  <section class="stage" id="stage-1">
+    <div class="stage-card liquid-glass center-step-card card-3d">
+      <div class="step-banner-tag" id="step1BannerTag">Step 1.1 of 6 — Your company name</div>
+
+      <!-- Substep 1.1: Company Name (Live AI Prompt) -->
+      <div class="substep-pane active" id="substep1_1">
+        <h2 class="question-center-title" id="title1_1"></h2>
+        <p class="question-center-hint" id="hint1_1"></p>
+
+        <div class="centered-input-box">
+          <input class="form-input" id="companyName" type="text" placeholder="e.g. Klang Auto Parts Sdn Bhd / Kuala Lumpur Precision Machinery Sdn Bhd" autofocus />
+        </div>
+
+        <div class="nav-row space-between" style="max-width: 580px; margin: 0 auto;">
+          <button class="back-btn" onclick="goTo(0)">← Back</button>
+          <button class="btn btn-primary" id="btnSub1Next" onclick="submitCompanyNameLive()">Next →</button>
+        </div>
+      </div>
+
+      <!-- Substep 1.2: Industry (Live AI Analyzed Options) -->
+      <div class="substep-pane" id="substep1_2">
+        <div id="thinkingBox1_2" class="agentic-thinking-box hidden">
+          <div class="thinking-pulse-dot"></div>
+          <div class="thinking-title">Cradilot AI is working out what kind of business your name points to...</div>
+          <div class="thinking-subtitle">Looking at the suppliers and buyers around you · matching a Malaysian SME industry group · noting where problems usually hide</div>
+        </div>
+        <div id="contentBox1_2">
+          <h2 class="question-center-title" id="title1_2"></h2>
+          <p class="question-center-hint" id="hint1_2"></p>
+          <div class="options-grid" id="options1_2" style="max-width: 680px; margin: 0 auto 28px;"></div>
+          <div class="nav-row space-between" style="max-width: 680px; margin: 0 auto;">
+            <button class="back-btn" onclick="prevStep1Sub(1)">← Previous step</button>
+            <div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Substep 1.3: Team Size (Live AI Prompt) -->
+      <div class="substep-pane" id="substep1_3">
+        <h2 class="question-center-title" id="title1_3"></h2>
+        <p class="question-center-hint" id="hint1_3"></p>
+        <div class="options-grid" id="options1_3" style="max-width: 680px; margin: 0 auto 28px;"></div>
+        <div class="nav-row space-between" style="max-width: 680px; margin: 0 auto;">
+          <button class="back-btn" onclick="prevStep1Sub(2)">← Previous step</button>
+          <div></div>
+        </div>
+      </div>
+
+      <!-- Substep 1.4: Annual Revenue (Live AI Prompt) -->
+      <div class="substep-pane" id="substep1_4">
+        <h2 class="question-center-title" id="title1_4"></h2>
+        <p class="question-center-hint" id="hint1_4"></p>
+        <div class="options-grid" id="options1_4" style="max-width: 680px; margin: 0 auto 28px;"></div>
+        <div class="nav-row space-between" style="max-width: 680px; margin: 0 auto;">
+          <button class="back-btn" onclick="prevStep1Sub(3)">← Previous step</button>
+          <div></div>
+        </div>
+      </div>
+
+      <!-- Substep 1.5: Biggest Business Challenge (Live AI Options + Custom Input) -->
+      <div class="substep-pane" id="substep1_5">
+        <h2 class="question-center-title" id="title1_5"></h2>
+        <p class="question-center-hint" id="hint1_5"></p>
+        <div class="options-grid single-col" id="options1_5" style="max-width: 680px; margin: 0 auto 20px;"></div>
+        <div class="centered-input-box" style="margin-bottom: 24px;">
+          <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px;">Or type the biggest problem your business has right now:</div>
+          <div style="display: flex; gap: 8px;">
+            <input class="form-input" id="customChallengeInput" type="text" placeholder="e.g. Paper delivery notes and month-end checking take hours, and orders go missing..." />
+            <button class="btn btn-primary" onclick="submitCustomChallenge()" style="white-space: nowrap;">Use this problem →</button>
+          </div>
+        </div>
+        <div class="nav-row space-between" style="max-width: 680px; margin: 0 auto;">
+          <button class="back-btn" onclick="prevStep1Sub(4)">← Previous step</button>
+          <div></div>
+        </div>
+      </div>
+
+      <!-- Substep 1.6: Current Digital Tools (the brief names this discovery question) -->
+      <div class="substep-pane" id="substep1_6">
+        <h2 class="question-center-title" id="title1_6"></h2>
+        <p class="question-center-hint" id="hint1_6"></p>
+        <div class="options-grid single-col" id="options1_6" style="max-width: 680px; margin: 0 auto 20px;"></div>
+        <div class="centered-input-box" style="margin-bottom: 24px;">
+          <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px;">Or list the tools you actually run the business on:</div>
+          <div style="display: flex; gap: 8px;">
+            <input class="form-input" id="customToolsInput" type="text" placeholder="e.g. SQL accounting, WhatsApp for orders, paper delivery notes, a Facebook page..." />
+            <button class="btn btn-primary" onclick="submitCustomTools()" style="white-space: nowrap;">Next step →</button>
+          </div>
+        </div>
+        <div class="nav-row space-between" style="max-width: 680px; margin: 0 auto;">
+          <button class="back-btn" onclick="prevStep1Sub(5)">← Previous step</button>
+          <div></div>
+        </div>
+      </div>
+
+      <!-- Substep 1.7: 12-Month Growth Objective (Live AI Options + Custom Input) -->
+      <div class="substep-pane" id="substep1_7">
+        <h2 class="question-center-title" id="title1_7"></h2>
+        <p class="question-center-hint" id="hint1_7"></p>
+        <div class="options-grid single-col" id="options1_7" style="max-width: 680px; margin: 0 auto 20px;"></div>
+        <div class="centered-input-box" style="margin-bottom: 24px;">
+          <div style="font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px;">Or type what you most want digital tools to do for you in the next 12 months:</div>
+          <div style="display: flex; gap: 8px;">
+            <input class="form-input" id="customObjectiveInput" type="text" placeholder="e.g. Drop paper orders completely and have night enquiries answered automatically..." />
+            <button class="btn btn-primary" onclick="submitCustomObjective()" style="white-space: nowrap;">Finish profile · start the check →</button>
+          </div>
+        </div>
+        <div class="nav-row space-between" style="max-width: 680px; margin: 0 auto;">
+          <button class="back-btn" onclick="prevStep1Sub(6)">← Previous step</button>
+          <div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       STAGE 2: Step 2 of 7 — Website URL Scraper & Cradilot AI Live Audit
+       ═════════════════════════════════════════════════════════════════════ -->
+  <section class="stage" id="stage-2">
+    <div class="stage-card liquid-glass center-step-card">
+      <div class="step-banner-tag">Step 2 — Live website inspection</div>
+      <h2 class="question-center-title" id="title-2"></h2>
+      <p class="question-center-hint" id="hint-2"></p>
+
+      <!-- URL Input Card -->
+      <div id="scrapeInputContainer" class="centered-input-box">
+        <input class="form-input" id="websiteUrlInput" type="text"
+               placeholder="e.g. https://www.yourcompany.com" />
+        <div style="display: flex; gap: 12px; justify-content: center; margin-top: 16px;">
+          <button class="btn btn-secondary" id="btnSkipScraper" onclick="skipWebsiteScraper()">
+            We have no website yet
+          </button>
+          <button class="btn btn-primary" id="btnRunScraper" onclick="runWebsiteScraper()">
+            Inspect it now →
+          </button>
+        </div>
+      </div>
+
+      <!-- Live Scraper Loading Animation Box -->
+      <div id="scrapeLoadingBox" class="scrape-scanner-box hidden">
+        <div class="radar-spinner"></div>
+        <div style="font-size: 14px; font-weight: 700; color: var(--blue-primary); margin-bottom: 6px;">
+          Probing your site from the public internet...
+        </div>
+        <div style="font-size: 12px; color: var(--text-secondary);" id="scrapeLoadingStatus">
+          Checking the TLS handshake and round-trip time...
+        </div>
+      </div>
+
+      <!-- Scraper Result Box -->
+      <div id="scrapeResultBox" class="scrape-result-card hidden">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,85,255,0.12); padding-bottom: 10px; margin-bottom: 14px;">
+          <span style="font-size: 13px; font-weight: 700; color: var(--blue-deep);">Measured on this run · stored in the local evidence chain</span>
+          <span class="dim-badge verified" id="statBadge">Measured</span>
+        </div>
+
+        <!-- 站型与开闸的模块：解释"为什么这些项没查" -->
+        <div class="audit-level-strip" id="machineAuditLevel"></div>
+
+        <!-- 客户只看这四行；明细折叠在下面，完整版进 PDF -->
+        <div class="conclusion-grid" id="machineAuditConclusions"></div>
+
+        <details class="audit-detail" id="machineAuditDetail">
+          <summary id="machineAuditDetailToggle">Show every check</summary>
+          <div class="scrape-stat-grid" id="machineAuditStats"></div>
+          <div class="dim-quote" id="machineAuditNote"></div>
+          <!-- 已知漏洞比对：OSV 公告 + CISA 在利用清单 + endoflife.date 停维日期 -->
+          <div class="vuln-box hidden" id="machineAuditVuln"></div>
+          <!-- 逐项结论：通过 / 缺口 / 未核验 / 不适用 四态如实分列 -->
+          <div class="finding-list" id="machineAuditFindings"></div>
+        </details>
+
+        <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+          <button class="btn btn-primary" id="btnScraperNext" onclick="confirmWebScraperAndProceed()">
+            Confirm · continue to the interview →
+          </button>
+        </div>
+      </div>
+
+      <div class="nav-row space-between mt-md" style="max-width: 680px; margin: 24px auto 0;">
+        <button class="back-btn" onclick="goTo(1)">← Back to Profile</button>
+        <div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       STAGE 3: Cradilot AI Dynamic Diagnostic Loop & Live Brain Workbench
+       ═════════════════════════════════════════════════════════════════════ -->
+  <section class="stage" id="stage-3">
+    <!-- Phase 2 only opens after phase 1 finishes, so the customer never reads two panels at once. -->
+    <div class="diag-flow-bar">
+      <span class="diag-flow-step active" id="diagFlowPhaseAsk">1 · Answer the questions</span>
+      <span class="diag-flow-sep">→</span>
+      <span class="diag-flow-step" id="diagFlowPhaseReview">2 · Review what we recorded</span>
+      <span class="diag-flow-count" id="diagExploreCount">Nothing confirmed yet</span>
+    </div>
+
+    <div class="spatial-cockpit-grid">
+      
+      <!-- ── Phase 2: the recorded-evidence ledger, opened only when the questions finish ── -->
+      <div class="stage-card liquid-glass cockpit-review-panel card-3d hidden" id="diagReviewPanel">
+        <div class="diag-header-row">
+          <div class="step-banner-tag" id="diagReviewBanner">What Cradilot recorded in this session</div>
+        </div>
+        <p class="container-q-prompt" id="diagReviewNote">Everything below came from your own answers in this session. Areas you were not sure about stay open and cost you nothing on the score.</p>
+
+        <!-- Live Enterprise Dossier Snapshot -->
+        <div class="dossier-snapshot-card" id="dossierSnapshotCard">
+          <div class="dossier-snapshot-header">
+            <span class="dossier-snapshot-title">Your business profile so far</span>
+            <span style="font-size: 10px; color: #166534; font-weight: 700;">Saved in the evidence record on this machine</span>
+          </div>
+          <div class="dossier-tags-row" id="dossierTagsRow">
+            <span class="dossier-pill-tag" id="snapCompany">Company: loading...</span>
+            <span class="dossier-pill-tag" id="snapIndustry">Industry: loading...</span>
+            <span class="dossier-pill-tag" id="snapTeam">Size: loading...</span>
+            <span class="dossier-pill-tag" id="snapTurnover">Turnover: loading...</span>
+            <span class="dossier-pill-tag" id="snapChallenge">Main problem: loading...</span>
+            <span class="dossier-pill-tag" id="snapObjective">Goal: loading...</span>
+          </div>
+        </div>
+
+        <!-- 4-Step Chain of Thought: one line, wording revealed on hover -->
+        <div class="cot-section">
+          <div class="section-micro-label">How Cradilot got here — hover a step to read what it did</div>
+          <div class="cot-flow">
+          
+            <div class="cot-node" id="cotStep1" tabindex="0">
+              <span class="cot-node-dot">1</span>
+              <span class="cot-node-name">How you run</span>
+              <span class="cot-node-tip" id="cotText1">Working out who you buy from, who you sell to, and what you sell...</span>
+            </div>
+            <span class="cot-arrow" aria-hidden="true"></span>
+            <div class="cot-node" id="cotStep2" tabindex="0">
+              <span class="cot-node-dot">2</span>
+              <span class="cot-node-name">What it costs</span>
+              <span class="cot-node-tip" id="cotText2">Estimating wasted manual work and any single point that could stop you...</span>
+            </div>
+            <span class="cot-arrow" aria-hidden="true"></span>
+            <div class="cot-node" id="cotStep3" tabindex="0">
+              <span class="cot-node-dot">3</span>
+              <span class="cot-node-name">Checking us</span>
+              <span class="cot-node-tip" id="cotText3">Holding back: we do not recommend costly AI while the basics are still weak...</span>
+            </div>
+            <span class="cot-arrow" aria-hidden="true"></span>
+            <div class="cot-node" id="cotStep4" tabindex="0">
+              <span class="cot-node-dot">4</span>
+              <span class="cot-node-name">What to do next</span>
+              <span class="cot-node-tip" id="cotText4">Matching catalogue products to the 12-month milestones...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Knowledge Topology Network (Evidence Growth Graph) -->
+        <div class="diag-graph-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span style="font-size: 12px; font-weight: 700; color: var(--text-primary);">Live evidence map (how your facts connect)</span>
+            <span style="font-size: 10px; color: var(--blue-primary); font-weight: 700;">Drawn only from confirmed answers</span>
+          </div>
+          <div id="knowledgeGraphContainer" style="width: 100%; height: 160px; position: relative; overflow: hidden; border-radius: 8px; background: #030a1c;">
+            <!-- SVG / Canvas Force Graph populated by JS -->
+          </div>
+        </div>
+
+        <div class="nav-row space-between" style="margin-top: 18px; align-items: center;">
+          <button class="back-btn" onclick="showDiagPhase('ask')">← Add or correct an answer</button>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn btn-secondary" onclick="openSalesLeadModal()">Ask a specialist to follow up</button>
+            <button class="btn btn-primary" id="btnCompleteFinalize" onclick="finalizeAssessmentSession()">
+              Build my blueprint now →
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── Phase 1: one question at a time ── -->
+      <div class="stage-card liquid-glass cockpit-ask-panel card-3d" id="diagAskPanel">
+        <div class="diag-header-row">
+          <div class="step-banner-tag" id="diagBannerTag">Cradilot live check · Turn 1</div>
+        </div>
+
+        <div id="diagThinkingBox" class="agentic-thinking-box hidden">
+          <div class="thinking-pulse-dot"></div>
+          <div class="thinking-title" id="diagThinkingTitle">Cradilot Brain is turning your answers into facts we can check...</div>
+          <div class="thinking-subtitle" id="diagThinkingSubtitle">Comparing against other Malaysian businesses like yours · checking the evidence we hold · looking for anything that could stop you on its own</div>
+        </div>
+
+        <!-- Apple Live Dynamic Orb (5-State Engine) -->
+        <div class="orb-container">
+          <!-- app.js 只换 #appleLiveOrb 上的 state-* 类：颜色与速度全部由状态类
+               写在球上的自定义属性继承给各层，所以每层都必须是子元素。 -->
+          <div class="apple-live-orb state-idle" id="appleLiveOrb" title="Live status indicator">
+            <span class="orb-fluid">
+              <i class="orb-blob orb-blob-a"></i>
+              <i class="orb-blob orb-blob-b"></i>
+              <i class="orb-blob orb-blob-c"></i>
+              <i class="orb-sweep"></i>
+            </span>
+            <span class="orb-body"></span>
+            <span class="orb-rim"></span>
+            <span class="orb-spec"></span>
+          </div>
+          <div class="orb-status-label" id="orbStatusLabel">Standing by</div>
+        </div>
+
+        <!-- Dynamic Problem Mounting Container Box -->
+        <div class="dynamic-container-card" id="diagContentBox">
+          <span class="container-stage-badge" id="containerStageBadge"></span>
+          <h2 class="container-q-title" id="diagTitle">Preparing your next question...</h2>
+          <p class="container-q-prompt" id="diagHint"></p>
+          <!-- 依据框由 renderDynamicContainer 按本次真实证据完整度填充 -->
+          <div class="container-rationale-box hidden" id="containerRationaleBox"></div>
+          <!-- 每一轮记下了什么（或什么都没记下），由后端回读成一行白话 -->
+          <div class="container-readback hidden" id="diagReadBack"></div>
+
+          <!-- Dynamic Capsules Grid -->
+          <div class="capsules-grid" id="diagOptions">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+
+        <!-- Typing and dictating are answers, so they stay in the answering phase -->
+        <div class="diag-free-input">
+          <div class="diag-free-input-label">Add any real detail in your own words (typing or voice):</div>
+
+          <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+            <input type="text" class="form-input" id="customAnswerInput" placeholder="Add a real operating detail (e.g. sales talks to buyers on their own phones, so deals get lost)" />
+            <button class="btn btn-secondary" id="btnSubmitCustom" onclick="submitCustomDiagAnswer()" style="white-space: nowrap;">Check this answer</button>
+          </div>
+
+          <div class="multimodal-input-bar">
+            <button class="mic-toggle-btn" id="btnMicRecord" onclick="toggleVoiceRecording()"
+                    aria-label="Speak instead of typing" title="Speak instead — live speech to text">
+              <span class="mic-wave mic-wave-a" aria-hidden="true"></span>
+              <span class="mic-wave mic-wave-b" aria-hidden="true"></span>
+              <svg class="mic-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path class="mic-body" d="M12 3.1a2.95 2.95 0 0 1 2.95 2.95v5.3a2.95 2.95 0 0 1-5.9 0V6.05A2.95 2.95 0 0 1 12 3.1z"/>
+                <path class="mic-line" d="M7.3 10.7v.8a4.7 4.7 0 0 0 9.4 0v-.8"/>
+                <path class="mic-line" d="M12 16.2v3.2M9.2 19.4h5.6"/>
+              </svg>
+            </button>
+            <span class="mic-status" id="micBtnText"></span>
+            <span class="mic-note">AI removes filler words and general complaints from your answer</span>
+          </div>
+          <canvas class="audio-waveform-canvas" id="audioWaveformCanvas"></canvas>
+        </div>
+
+        <!-- Bottom Controls -->
+        <div class="nav-row space-between" style="margin-top: 18px; align-items: center;">
+          <button class="back-btn" onclick="goTo(2)">← Back</button>
+
+          <div style="display: flex; gap: 10px;">
+            <button class="btn btn-secondary" id="btnWorkbenchOpenLeadModal" onclick="openSalesLeadModal()">
+              Ask a specialist to follow up
+            </button>
+            <button class="btn btn-primary" id="btnEnterDiagReview" onclick="showDiagPhase('review')">
+              I have answered enough — show me what we recorded →
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       STAGE 4: Final Diagnostic Scorecard & Bleeding Radar
+       ═════════════════════════════════════════════════════════════════════ -->
+  <section class="stage" id="stage-4">
+    <div class="stage-card liquid-glass card-3d" style="max-width: 860px;">
+      <div class="stage-label">Step 4: maturity score and cost of the confirmed problems</div>
+      <h2 class="stage-title" id="s8Company">Your full digital health report</h2>
+      <div class="data-basis" id="dataBasisBanner4" hidden></div>
+
+      <!-- DMS Score -->
+      <div class="score-display">
+        <div class="score-number" id="dmsNumber">--</div>
+        <div class="score-denom">/ 100</div>
+      </div>
+      <div id="dmsTierBadge" class="score-tier"></div>
+      <div class="gauge-bar mt-sm">
+        <div class="gauge-fill" id="dmsGauge" style="width: 0%"></div>
+      </div>
+
+      <!-- 6-Dimension Grid -->
+      <div class="dimension-grid mt-md" id="dimensionGrid">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ARS Score -->
+      <div class="stage-label">AI Readiness Score</div>
+      <div class="score-display">
+        <div class="score-number" id="arsNumber" style="font-size: 48px;">--</div>
+        <div class="score-denom" style="font-size: 20px;">/ 100</div>
+      </div>
+      <div class="gauge-bar mt-sm mb-md">
+        <div class="gauge-fill" id="arsGauge" style="width: 0%"></div>
+      </div>
+
+      <!-- 5 readiness factors the brief names by name: scored, so shown with their basis -->
+      <div class="stage-label">What the readiness score is made of</div>
+      <p class="ars-factor-note">Each factor below is scored from what you told us. Where a factor was not collected this run, it is held at a neutral value — that is not a deduction.</p>
+      <div class="dimension-grid" id="arsFactorGrid">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- ARS Hard-lock alert (shown if DMS < 40) -->
+      <div class="hardlock-alert hidden" id="hardlockAlert">
+        <div class="hardlock-alert-title">Not the right time to buy AI (your organisation is not ready yet)</div>
+        <div class="hardlock-alert-body">
+          The business basics are not digitalised yet, so the readiness score is held to a maximum of 10. This is not a criticism of your company. It is a warning: get backups, customer records and a company email address settled first, and only then bring in AI.
+          Do not buy costly AI marketing tools before Phase 1 basics are in place, or the money will sit unused.
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Business Bleeding & Loss Tracker Card -->
+      <div class="pain-summary-card" style="margin: 20px 0;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+          <span style="font-size: 14px; font-weight: 700; color: var(--crimson);">Yearly loss estimated from the facts confirmed in this run</span>
+          <span class="pain-loss-badge" id="totalLossDisplay" style="font-size: 20px;">RM 0.00</span>
+        </div>
+        <div id="painListDetailed" style="font-size: 12px; color: var(--text-secondary); line-height: 1.6;">
+          <!-- Itemized list populated by JS -->
+        </div>
+      </div>
+
+      <!-- AI-generated DMS Insight -->
+      <div class="stage-label">Cradilot AI: what these scores mean for you</div>
+      <div id="dmsInsightLoading" class="ai-loading">
+        <div class="ai-dot"></div>
+        <div class="ai-dot"></div>
+        <div class="ai-dot"></div>
+      </div>
+      <div class="ai-output" id="dmsInsight"></div>
+      <span class="ai-cursor hidden" id="dmsInsightCursor"></span>
+
+      <div class="nav-row space-between mt-lg">
+        <button class="back-btn" onclick="goTo(3)">← Back to the interview</button>
+        <button class="btn btn-primary" onclick="goTo(5)">See the 12-month plan and the return on investment →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       STAGE 5: 12-Month Action Roadmap, ROI and the solution cart
+       ═════════════════════════════════════════════════════════════════════ -->
+  <section class="stage" id="stage-5">
+    <div class="stage-card liquid-glass" style="max-width: 880px;">
+      <div class="stage-label">Growth blueprint — the 12-month plan and what it returns</div>
+      <h2 class="stage-title">First-year costs, gains and the package list</h2>
+      <div class="data-basis" id="dataBasisBanner5" hidden></div>
+
+      <!-- ROI Hero -->
+      <div class="roi-hero" id="roiHero" style="margin: 20px 0 28px;">
+        <div class="roi-hero-number" id="roiPct">&mdash;</div>
+        <div class="roi-hero-label" id="roiHeroLabel">First-year return on investment, based on the assumptions listed below</div>
+      </div>
+
+      <div class="roi-grid">
+        <div class="roi-metric">
+          <div class="roi-value positive" id="roiNetGain">&mdash;</div>
+          <div class="roi-label">Net gain for the year (gain minus the yearly fee)</div>
+        </div>
+        <div class="roi-metric">
+          <div class="roi-value blue" id="roiInvestment">&mdash;</div>
+          <div class="roi-label">{{VENDOR_NAME}} yearly fee (the total of the list below)</div>
+        </div>
+        <div class="roi-metric">
+          <div class="roi-value positive" id="roiLaborSavings">&mdash;</div>
+          <div class="roi-label">Cash value of the manual hours saved</div>
+        </div>
+        <div class="roi-metric">
+          <div class="roi-value positive" id="roiLeadRecovery">&mdash;</div>
+          <div class="roi-label">Margin on enquiries caught after working hours</div>
+        </div>
+      </div>
+
+      <!-- 测算依据由 JS 依 roi_engine 的 benchmark_note 填充，HTML 不预置任何数字或结论 -->
+      <div class="roi-basis-note" id="roiBasisNote"></div>
+
+      <!-- 测算假设：工时与询盘数机检测不到，只能取假设；逐项标出处，改完即时重算 -->
+      <div class="roi-assumptions" id="roiAssumptions" hidden></div>
+      <div class="roi-assumption-actions" id="roiAssumptionActions" hidden>
+        <button class="btn btn-primary" id="roiRecalcBtn" type="button">Recalculate with these numbers</button>
+        <span class="roi-assumption-hint" id="roiAssumptionHint"></span>
+      </div>
+
+      <div class="divider"></div>
+      <div class="stage-label">The 12-month plan at a glance, phase by phase</div>
+
+      <!-- 时间轴节点内容全部由 renderTimelineCanvas 依 res.recommendation.roadmap 填充 -->
+      <div class="visual-timeline-container card-3d" id="visualTimelineCanvas">
+        <div class="timeline-flow-header">
+          <div class="flow-header-title">12-month timeline</div>
+          <div class="flow-header-tag">Ordered by the problems confirmed in this run</div>
+        </div>
+
+        <div class="timeline-visual-track">
+          <div class="timeline-node active-node" id="tlNode1" onclick="focusPhaseCard(0)">
+            <div class="node-top-bar">
+              <span class="node-badge"></span>
+              <span class="node-time"></span>
+            </div>
+            <div class="node-title"></div>
+            <div class="node-modules"></div>
+            <div class="node-bottom-row">
+              <div class="node-roi-chip"></div>
+              <div class="node-gate-tag"></div>
+            </div>
+          </div>
+
+          <div class="timeline-arrow-connector">▶</div>
+
+          <div class="timeline-node" id="tlNode2" onclick="focusPhaseCard(1)">
+            <div class="node-top-bar">
+              <span class="node-badge"></span>
+              <span class="node-time"></span>
+            </div>
+            <div class="node-title"></div>
+            <div class="node-modules"></div>
+            <div class="node-bottom-row">
+              <div class="node-roi-chip"></div>
+              <div class="node-gate-tag"></div>
+            </div>
+          </div>
+
+          <div class="timeline-arrow-connector">▶</div>
+
+          <div class="timeline-node" id="tlNode3" onclick="focusPhaseCard(2)">
+            <div class="node-top-bar">
+              <span class="node-badge"></span>
+              <span class="node-time"></span>
+            </div>
+            <div class="node-title"></div>
+            <div class="node-modules"></div>
+            <div class="node-bottom-row">
+              <div class="node-roi-chip hero-roi"></div>
+              <div class="node-gate-tag"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="roadmapLoading" class="ai-loading">
+        <div class="ai-dot"></div>
+        <div class="ai-dot"></div>
+        <div class="ai-dot"></div>
+      </div>
+      <div class="roadmap-phases" id="roadmapPhases" style="margin: 16px 0 28px;">
+        <!-- Populated by JS -->
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Pre-configured Cart -->
+      <div class="stage-label">A package put together for you by {{VENDOR_NAME}}</div>
+      <div class="cart-list" id="cartList">
+        <!-- Populated by JS -->
+      </div>
+      <div class="cart-total">
+        <div class="cart-total-label">Total investment for the first year</div>
+        <div class="cart-total-value" id="cartTotal">&mdash;</div>
+      </div>
+
+      <div class="divider" style="margin: 32px 0 24px;"></div>
+
+      <!-- 顾问工作区（本公司内部）：备注随 PDF 输出，指派写进销售档案 -->
+      <div class="consultant-desk" id="consultantDesk">
+        <div class="stage-label">Consultant desk (internal to {{VENDOR_NAME}}, not for the customer to fill)</div>
+        <div class="form-group">
+          <label class="form-label" for="consultantNotes">Consultant notes — what you discussed this time (printed into the PDF)</label>
+          <textarea class="form-input" id="consultantNotes" rows="3"
+            placeholder="e.g. Customer cares most about night enquiries. Explained that phase 2 starts with tidying the data; the AI modules are quoted once the seat count is settled."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="assignedTo">Assign salesperson</label>
+          <input class="form-input" id="assignedTo" type="text"
+            placeholder="e.g. Ahmad (Kuala Lumpur area)" />
+        </div>
+        <div class="consultant-desk-actions">
+          <button class="btn btn-secondary" id="assignLeadBtn" type="button" onclick="saveConsultantDesk()">Save to the sales record</button>
+          <span class="consultant-desk-hint" id="consultantDeskHint">This is written along with the booking. If the booking is already in, it updates that record.</span>
+        </div>
+      </div>
+
+      <!-- Download PDF & Lead Generation -->
+      <div style="display: flex; flex-direction: column; gap: 14px; max-width: 520px; margin: 0 auto;">
+        <button class="btn btn-coral btn-lg btn-full" id="downloadPdfBtn" onclick="downloadPdf()">
+          Download this blueprint as a PDF (prices and check-off items included)
+        </button>
+        <button class="btn btn-secondary btn-full" onclick="toggleLeadForm()">
+          Book a free 30-minute session with a {{VENDOR_NAME}} digital specialist
+        </button>
+      </div>
+
+      <!-- Lead Submission Form (hidden by default) -->
+      <div id="leadForm" class="hidden" style="margin-top: 24px;">
+        <div class="divider"></div>
+        <div class="stage-label">Leave your details and a consultant will call you</div>
+
+        <div class="form-group">
+          <label class="form-label" for="contactName">Your name / person in charge</label>
+          <input class="form-input" id="contactName" type="text" placeholder="e.g. Dato' Tan Wei Ming" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="contactPhone">Phone number (WhatsApp)</label>
+          <input class="form-input" id="contactPhone" type="tel" placeholder="+60 12-345 6789" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="contactEmail">Company email address</label>
+          <input class="form-input" id="contactEmail" type="email" placeholder="ceo@yourcompany.com" />
+        </div>
+
+        <button class="btn btn-primary btn-full mt-md" onclick="submitLead()">
+          Send booking — a {{VENDOR_NAME}} consultant will call you back
+        </button>
+
+        <p class="footer-note mt-sm">
+          When you send this, the consultant also receives the list of facts and the plan from this run, so you do not have to explain everything again on the call. The data stays on this machine and is not sent elsewhere.
+        </p>
+      </div>
+
+      <!-- Icebreaker Preview for Sales -->
+      <div id="icebreakerSection" class="hidden" style="margin-top: 24px;">
+        <div class="divider"></div>
+        <div class="stage-label">What the consultant will open with (prepared from this run)</div>
+
+        <div id="icebreakerLoading" class="ai-loading">
+          <div class="ai-dot"></div>
+          <div class="ai-dot"></div>
+          <div class="ai-dot"></div>
+        </div>
+
+        <div class="ai-output" id="icebreakerText" style="background: rgba(0,85,255,0.04); border: 1px solid rgba(0,85,255,0.12); border-radius: 14px; padding: 16px; margin-top: 8px;"></div>
+        <span class="ai-cursor hidden" id="icebreakerCursor"></span>
+      </div>
+
+      <div class="nav-row centered mt-lg">
+        <button class="back-btn" onclick="goTo(4)">← Back to the score report</button>
+        <button class="btn btn-secondary" onclick="resetAssessment()">Start a new assessment</button>
+      </div>
+
+      <p class="footer-note mt-lg">
+        Cradilot AI · The analysis runs on this machine and your data is not sent elsewhere · Every conclusion traces back to a measurement taken in this run or to something you told us
+      </p>
+    </div>
+  </section>
+
+  <!-- Sales Lead Dispatch Modal (One-click CRM Push) -->
+  <div class="modal-backdrop" id="salesLeadModal">
+    <div class="modal-card">
+      <div class="modal-header-row">
+        <div class="modal-title">Book a {{VENDOR_NAME}} digital specialist</div>
+        <button class="modal-close-btn" onclick="closeSalesLeadModal()" aria-label="Close">&times;</button>
+      </div>
+      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 18px; line-height: 1.5;">
+        These details go to the consultant along with the list of facts from this run, so you do not have to explain everything again on the call. Please check your contact details:
+      </p>
+
+      <form id="salesLeadModalForm" onsubmit="event.preventDefault(); submitSalesLeadModal();">
+        <div class="modal-form-group">
+          <label class="modal-label" for="salesContactName">Name of the person in charge *</label>
+          <input class="form-input" id="salesContactName" type="text" required placeholder="e.g. Dato' Tan / Mr Tan" />
+        </div>
+
+        <div class="modal-form-group">
+          <label class="modal-label" for="salesContactPhone">WhatsApp phone number *</label>
+          <input class="form-input" id="salesContactPhone" type="tel" required placeholder="+60 12-345 6789" />
+        </div>
+
+        <div class="modal-form-group">
+          <label class="modal-label" for="salesContactEmail">Company email address *</label>
+          <input class="form-input" id="salesContactEmail" type="email" required placeholder="name@yourcompany.com" />
+        </div>
+
+        <div class="modal-form-group">
+          <label class="modal-label" for="salesCallbackTime">Preferred time to talk</label>
+          <select class="form-input" id="salesCallbackTime">
+            <option value="morning">Morning (09:30 - 12:00)</option>
+            <option value="afternoon" selected>Afternoon (14:00 - 17:30)</option>
+            <option value="urgent">Urgent — call me back within 2 hours</option>
+          </select>
+        </div>
+
+        <div class="modal-form-group">
+          <label class="modal-label" for="salesNotes">Anything specific you want covered (optional)</label>
+          <textarea class="form-input" id="salesNotes" rows="3" placeholder="e.g. Our accounts sit on one computer and we want an off-site backup, or we would like to ask about the Cradle CIP Spark grant..."></textarea>
+        </div>
+
+        <div id="salesModalStatus" style="display: none; padding: 10px 14px; border-radius: 8px; font-size: 12px; margin-bottom: 14px;"></div>
+
+        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 20px;">
+          <button type="button" class="btn btn-secondary" onclick="closeSalesLeadModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btnSubmitSalesLead">Send to the consultant now</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 光球的流体扰动：单倍频 + scale 6，124px 的面积上这点开销才敢常驻。
+       CSS 里用 filter: url(#orbTurbulence) 引用。 -->
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
+    <filter id="orbTurbulence" x="-25%" y="-25%" width="150%" height="150%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="1" seed="7" result="noise">
+        <animate attributeName="baseFrequency" values="0.010;0.016;0.010" dur="18s" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="6"/>
+    </filter>
+  </svg>
+
+  <script>window.CRADILOT_BRANDING = {{BRANDING_JSON}};</script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

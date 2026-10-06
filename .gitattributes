@@ -1,0 +1,6 @@
+# Normalise line endings in the object store so a Windows contributor and a Linux
+# CI run do not produce opposite diffs on every file they both touch.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary

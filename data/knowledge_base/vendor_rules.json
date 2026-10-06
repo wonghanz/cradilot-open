@@ -1,0 +1,116 @@
+{
+  "project_title": "AI SME Digital Growth Advisor (Cradilot AI)",
+  "tagline": "Helping SMEs Discover Their Next Digital Step",
+  "market_context": "Over 95% of Malaysian businesses are SMEs. Many purchase wrong tools, waste capital, implement in wrong sequence, and fail to realize ROI.",
+  "deliverables": {
+    "step_1_business_discovery": {
+      "core_questions": [
+        "Industry",
+        "Company size",
+        "Number of employees",
+        "Current digital tools",
+        "Biggest business challenge",
+        "Growth objective"
+      ],
+      "bonus": "AI dynamically asks follow-up questions tailored to the enterprise context."
+    },
+    "step_2_digital_maturity_score": {
+      "scale": "0 - 100",
+      "dimensions": [
+        "Website",
+        "Cloud",
+        "CRM",
+        "Marketing",
+        "Cybersecurity",
+        "AI Adoption"
+      ],
+      "rating": "1 to 5 stars per dimension"
+    },
+    "step_3_ai_readiness_score": {
+      "evaluation_factors": [
+        "leadership",
+        "data availability",
+        "employee skills",
+        "digital workflow",
+        "process maturity"
+      ],
+      "hard_lock_defense": "If DMS < 40, ARS must be locked below 10 to prevent premature selling of advanced AI to fragile infrastructure."
+    },
+    "step_4_business_pain_points": {
+      "mandate": "Evidence-based analysis rather than generic boilerplate.",
+      "top_5_standard_cases": [
+        "Too much manual work (paper orders, double-entry)",
+        "No CRM (customer data siloed on employee personal phones)",
+        "Customer enquiries handled manually (late night and weekend inquiry loss)",
+        "Marketing not measurable (dormant site without GA4/Pixel tracking)",
+        "No internal knowledge management (single PC accounting data vulnerability)"
+      ]
+    },
+    "step_5_action_roadmap": {
+      "phase_1": {
+        "name": "Quick Wins",
+        "timeline": "2-4 weeks",
+        "focus": [
+          "Business Email",
+          "Website",
+          "Cloud Backup"
+        ],
+        "expected_roi": "Immediate (2-4 weeks)"
+      },
+      "phase_2": {
+        "name": "Productivity",
+        "timeline": "3-6 months",
+        "focus": [
+          "CRM",
+          "Team Collaboration",
+          "AI Meeting Assistant"
+        ],
+        "expected_roi": "3-6 months"
+      },
+      "phase_3": {
+        "name": "Growth",
+        "timeline": "6-12 months",
+        "focus": [
+          "AI Sales Assistant",
+          "Marketing Automation",
+          "AI Customer Support"
+        ],
+        "expected_roi": "6-12 months"
+      }
+    }
+  },
+  "recommendation_engine_rationale": {
+    "business_email": {
+      "options": [
+        "Business Email Hosting",
+        "Google Workspace",
+        "Microsoft 365"
+      ],
+      "why": "Free email has 35%+ spam filter discard rate, zero MACC 17A legal audit trail. Domain email ensures 99.8% delivery and compliance."
+    },
+    "website": {
+      "options": [
+        "AI Website Builder",
+        "Managed WordPress AI",
+        "Magento / Shopify"
+      ],
+      "why": "Managed WordPress AI gives B2B SMEs high SEO ranking and NVMe speed for RM 43.99/mo, avoiding RM 10,000+ custom development cost."
+    },
+    "cloud_backup": {
+      "options": [
+        "Acronis Cyber Protect Cloud (500GB)"
+      ],
+      "why": "Guarantees RTO < 30 minutes, AES-256 offsite encryption, protects against PDPA RM 500k fines."
+    }
+  },
+  "financial_model_benchmarks": {
+    "malaysia_labor_cost_standard": "Average salary RM 3,000/mo + EPF/SOCSO = RM 3,500/mo total cost -> RM 22.00 / hour standard rate.",
+    "formula_labor_savings": "saved_hours_per_week * 52 * RM 22.00",
+    "formula_night_leakage": "monthly_lost_inquiries * 0.8_salvaged * average_order_margin * 12",
+    "annual_vendor_investment": "RM 5,550.68 total package",
+    "benchmark_roi": "505% first-year ROI (RM 28,000+ net gain on RM 5,550 package)"
+  },
+  "sales_tool_integration": {
+    "action": "On 'Free Consultation' click, generate SalesLead payload with pre-configured cart and 3-stage icebreaker talk track."
+  }
+}

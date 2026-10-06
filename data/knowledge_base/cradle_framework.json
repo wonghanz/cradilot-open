@@ -1,0 +1,73 @@
+{
+  "plan_and_design": {
+    "document_name": "Sample Plan & Design Document v0.11",
+    "core_framework": {
+      "purpose": "Define framework of guidelines, modules, and specifications to be produced and implemented.",
+      "methodology": "Requirement / Specification / Module Relationship with explicit Design Rationale.",
+      "design_rationale_mandate": "Every architectural choice must provide an explicit 'Design Rationale' explaining WHY this technology or module was chosen over alternatives to prevent over-engineering or wrong tool purchasing.",
+      "architecture_layers": [
+        "User Design (look, feel, UX navigation)",
+        "Functional Design (operational logic, state transitions)",
+        "Module & Functionality Descriptions (technical specifications)",
+        "Deployment Plan (Gantt-style phased rollout)"
+      ]
+    },
+    "sme_adaptation": {
+      "anti_blackbox_rule": "SMEs must not be given blackbox product recommendations; every our SKU must map to a specific operational pain point and include a quantifiable technical rationale."
+    }
+  },
+  "build_and_test": {
+    "document_name": "Sample Build & Test Document v0.11",
+    "test_sequences": [
+      {
+        "sequence_id": "Test Sequence 01",
+        "title": "Digital Identity & Mail Anti-Spoofing Verification",
+        "test_action": "Send outgoing commercial quotation from primary domain to external recipients (Gmail/Yahoo) and inspect DNS authentication headers.",
+        "expected_result": "SPF, DKIM, and DMARC verification records return 'PASS', delivery rate reaches 99.8%, zero placement into spam folders.",
+        "failure_remediation": "Check DNS TXT record propagation, verify DKIM selector 2048-bit key alignment, ensure TTL refreshed within 300 seconds."
+      },
+      {
+        "sequence_id": "Test Sequence 02",
+        "title": "Disaster Recovery RTO (Recovery Time Objective) Verification",
+        "test_action": "Simulate primary financial accounting PC failure; trigger cloud image restore from Acronis Cyber Protect Cloud to standby hardware.",
+        "expected_result": "Full database integrity restored and verified readable in under 30 minutes; Recovery Point Objective (RPO) < 24 hours.",
+        "failure_remediation": "Verify Acronis AES-256 backup encryption key integrity, check local bandwidth limits, review backup scheduling logs."
+      },
+      {
+        "sequence_id": "Test Sequence 03",
+        "title": "After-Hours Ingestion & Inquiry Response Latency",
+        "test_action": "Transmit simulated customer product inquiry at 21:30 via WhatsApp/Web Form webhook.",
+        "expected_result": "Automated acknowledgment and qualification dispatched within 60 seconds; lead payload successfully written into CRM ledger.",
+        "failure_remediation": "Audit webhook endpoint latency, verify WhatsApp Business API token expiry, check VPS middleware queue worker status."
+      }
+    ],
+    "post_test_failure_analysis_mandate": "Document symptoms, root cause, and corrective action for every failed test item to ensure supplier accountability."
+  },
+  "review_and_feedback": {
+    "document_name": "Sample Review & Feedback Document v0.11",
+    "core_components": {
+      "wip_tracking": "List of Work-in-Progress (WIP) detailing in-flight digital initiatives, progress bottlenecks, and planned iterations.",
+      "cost_planning": "Granular cost projection for ongoing system maintenance and future scaling phases (Phase 2 & 3) to prevent project abandonment."
+    }
+  },
+  "governance_and_legal": {
+    "macc_section_17a": {
+      "act_name": "Section 17A, Malaysian Anti-Corruption Commission (MACC) Act 2009",
+      "effective_date": "1 June 2020",
+      "corporate_liability": "A commercial organization commits an offence if a person associated with the organization corruptly gives, agrees to give, promises or offers to any person any gratification for the benefit of the organization.",
+      "penalty": "Fine of not less than 10 times the sum of the gratification or RM 1,000,000 (whichever is higher), or imprisonment for a term not exceeding 20 years, or both.",
+      "legal_defense_standard": "Adequate Procedures (TRUST Principles). The commercial organization must prove it had established adequate procedures to prevent corrupt conduct.",
+      "sme_vulnerability": "Using personal WhatsApp and free @gmail.com accounts leaves no corporate audit trail. When rogue agents or employees solicit kickbacks, the company cannot prove Adequate Procedures in court, triggering direct corporate liability.",
+      "cradilot_solution": "Business Domain Email and centralized CRM logging establish an immutable audit trail, providing statutory legal defense."
+    },
+    "digital_asset_ownership_declaration": {
+      "origin": "Cradle Statutory Declaration (Ownership of Solution)",
+      "statutory_mandate": "All domain registrations (.com.my / .com), DNS records, website source code, and customer CRM databases must be legally owned and registered under the company's SSM corporate entity, never under external contractors or individual employee personal accounts.",
+      "governance_deliverable": "Cradilot Digital Asset Sovereignty Checklist."
+    },
+    "funding_milestone_governance": {
+      "origin": "Cradle Form A1 / Form A2 / Form A3",
+      "milestone_philosophy": "Capital is released strictly in phased milestones upon physical verification of deliverables (e.g. DNS Whois, SPF pass report, restored database screenshot), protecting SMEs from paying upfront and facing contractor abandonment."
+    }
+  }
+}

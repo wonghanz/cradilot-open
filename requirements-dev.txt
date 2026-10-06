@@ -1,0 +1,9 @@
+-r requirements.txt
+
+pytest>=8.0             # 9.1.1
+
+# Only scripts/extract_cradle_knowledge.py needs these, and only if you rebuild the
+# knowledge base from your own source documents. The app does not import them.
+python-docx>=1.1
+python-pptx>=1.0
+pypdf>=4.0

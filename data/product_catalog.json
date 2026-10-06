@@ -1,0 +1,349 @@
+{
+  "_meta": {
+    "status": "SAMPLE DATA - not your price list",
+    "source": "Representative figures taken from a hosting partner's public pricing pages and verified on 2026-09-18. They are kept here only so the engine has something to compute against out of the box.",
+    "replace_before_use": "Fork this file: put your own SKUs, your own currency and your own renewal caveat in it. Every price the app quotes is derived from this file at runtime, so nothing is hardcoded in code.",
+    "currency": "MYR",
+    "annualization_rule": "Monthly price x 12 gives the yearly figure, assuming a 12-month commitment",
+    "renewal_caveat": "First-year promotional prices are usually lower than renewal prices; every quote must tell the customer the renewal price as well",
+    "verify_legend": {
+      "official": "Taken straight from a public page and safe to put in a customer quote",
+      "to_verify": "No published price for this exact spec; confirm with your own sales desk before quoting it, and do not present it as final",
+      "not_priced": "We sell this but publish no unit price; it may only be mentioned in words in the blueprint, never with an amount"
+    },
+    "partnership_note": "This sample lists a resold Cloudflare-powered service while the page it came from publishes no certification tier for it. Wording rule for your own catalogue: say 'Cloudflare-powered managed service' only; never claim a partnership tier you cannot point to in writing.",
+    "confirmed_partner_tiers": []
+  },
+  "products": [
+    {
+      "sku": "DEMO-DOM-COM",
+      "name": ".com domain registration",
+      "category": "domain",
+      "billing": "Annual",
+      "annual_myr": 55.7,
+      "verify_status": "official",
+      "source": "vendor.example/domains",
+      "includes": [
+        "Your company owns the domain",
+        "URL forwarding can be set up"
+      ],
+      "solves": "No domain of your own means no trusted web address for customers to find, and no company email address"
+    },
+    {
+      "sku": "DEMO-DOM-MY",
+      "name": ".my domain registration",
+      "category": "domain",
+      "billing": "Annual",
+      "annual_myr": 89.0,
+      "verify_status": "official",
+      "source": "vendor.example/domains",
+      "includes": [
+        "Shows you are a Malaysian business, which local customers trust more"
+      ],
+      "solves": "The local trust that .com.my / .my gives when you sell mainly to customers in Malaysia"
+    },
+    {
+      "sku": "DEMO-WP17-BUSINESS",
+      "name": "WP 17 AI Business managed WordPress hosting",
+      "category": "hosting",
+      "billing": "Monthly",
+      "monthly_myr": 43.99,
+      "annual_myr": 527.88,
+      "verify_status": "official",
+      "source": "vendor.example/web-hosting/wp-hosting",
+      "includes": [
+        "SSL across the whole site",
+        "Automatic daily backups",
+        "LiteSpeed server with fast NVMe storage",
+        "Theme that fits phone screens",
+        "AI website builder assistant"
+      ],
+      "solves": "No website / an out-of-date site that breaks on phones / no SSL / no backups"
+    },
+    {
+      "sku": "DEMO-WP17-BEGINNER",
+      "name": "WP 17 AI Beginner managed WordPress hosting",
+      "category": "hosting",
+      "billing": "Monthly",
+      "monthly_myr": 21.99,
+      "annual_myr": 263.88,
+      "verify_status": "official",
+      "source": "vendor.example/web-hosting/wp-hosting",
+      "includes": [
+        "A starter company website",
+        "SSL",
+        "Automatic backups"
+      ],
+      "solves": "New SMEs on a tight budget that only need a trustworthy web page and a company email domain"
+    },
+    {
+      "sku": "DEMO-EBIZ17-AIPRO",
+      "name": "EBiz 17 AI Pro shared cloud hosting",
+      "category": "hosting",
+      "billing": "Monthly",
+      "monthly_myr": 55.99,
+      "annual_myr": 671.88,
+      "verify_status": "official",
+      "source": "vendor.example/web-hosting/business-web-hosting",
+      "includes": [
+        "Host several websites",
+        "Higher resource limits"
+      ],
+      "solves": "Several brands or branch sites that should run on one hosting bill"
+    },
+    {
+      "sku": "DEMO-MAIL-PRO-10U",
+      "name": "EBiz Mail PRO business email (10 users / SmarterMail / 25GB per user)",
+      "category": "email",
+      "billing": "Monthly",
+      "monthly_myr": 69.3,
+      "annual_myr": 831.6,
+      "seats_block": 10,
+      "verify_status": "official",
+      "source": "vendor.example/email/email-hosting",
+      "includes": [
+        "Email on your own company domain",
+        "SPF / DKIM / DMARC set up",
+        "Spam filtering and email archiving",
+        "Sold in blocks of 10 users"
+      ],
+      "solves": "Sending quotes from a personal Gmail hurts your delivery record, nothing is archived, and staff walk off with the customer mail when they leave",
+      "note": "The real product is sold in blocks of 10 users; there is no 5-user block. The DEMO-BMAIL-PRO-5U code in old code was made up"
+    },
+    {
+      "sku": "DEMO-GWS-STARTER",
+      "name": "Google Workspace Business Starter (resold, per user)",
+      "category": "productivity",
+      "billing": "Monthly",
+      "monthly_myr_per_user": 12.99,
+      "annual_myr_per_user": 155.88,
+      "verify_status": "official",
+      "source": "vendor.example/google-workspace",
+      "includes": [
+        "Business email on your own domain, in Gmail",
+        "Documents you edit together in the cloud",
+        "Meet"
+      ],
+      "solves": "Teams that run on shared online documents and the Gmail ecosystem",
+      "note": "we promote the first 20 seats, advertised as about 56% savings"
+    },
+    {
+      "sku": "DEMO-M365-BASIC",
+      "name": "Microsoft 365 Business Basic (resold, per user)",
+      "category": "productivity",
+      "billing": "Monthly",
+      "monthly_myr_per_user": 14.99,
+      "annual_myr_per_user": 179.88,
+      "verify_status": "official",
+      "source": "vendor.example/microsoft-365",
+      "includes": [
+        "Outlook business email",
+        "Teams",
+        "OneDrive",
+        "Web versions of Word and Excel"
+      ],
+      "solves": "Established companies already used to desktop Office and Outlook"
+    },
+    {
+      "sku": "DEMO-SSL-BUSINESS",
+      "name": "Business SSL certificate (OV validation)",
+      "category": "security",
+      "billing": "Monthly",
+      "monthly_myr": 48.25,
+      "annual_myr": 579.0,
+      "verify_status": "official",
+      "source": "vendor.example/web-security/ssl",
+      "includes": [
+        "Verified company identity",
+        "Company details shown in the browser address bar",
+        "Higher warranty cover"
+      ],
+      "solves": "Expired certificate / self-signed certificate / the browser 'not secure' warning",
+      "note": "WP 17 and EBiz 17 hosting already include basic SSL, so buying this on its own is not needed"
+    },
+    {
+      "sku": "DEMO-CF-BOOSTER-PERSONAL",
+      "name": "Cloudflare Web Performance Booster Personal",
+      "category": "security",
+      "billing": "Annual",
+      "annual_myr": 99.0,
+      "verify_status": "official",
+      "source": "vendor.example/web-security/cloudflare-web-performance-booster",
+      "includes": [
+        "Global CDN speed-up",
+        "Basic WAF",
+        "DDoS protection",
+        "Automatic SSL renewal"
+      ],
+      "solves": "Site slow for overseas visitors, scanned and attacked, SSL renewed by hand"
+    },
+    {
+      "sku": "DEMO-CF-BOOSTER-PRO",
+      "name": "Cloudflare Web Performance Booster Pro",
+      "category": "security",
+      "billing": "Monthly",
+      "monthly_myr": 120.0,
+      "annual_myr": 1440.0,
+      "one_off_setup_myr": 99.0,
+      "verify_status": "official",
+      "source": "vendor.example/web-security/cloudflare-web-performance-booster",
+      "includes": [
+        "Setup and tuning done for you",
+        "Stronger WAF rules and Argo routing (Argo is a paid add-on)"
+      ],
+      "solves": "No in-house IT, so we look after the security rules for you"
+    },
+    {
+      "sku": "DEMO-ACRONIS-WKS",
+      "name": "Acronis Cyber Protect (workstation backup, per device)",
+      "category": "backup",
+      "billing": "Monthly",
+      "monthly_myr_per_device": 24.24,
+      "annual_myr_per_device": 290.88,
+      "verify_status": "official",
+      "source": "vendor.example/acronis/cyber-protect",
+      "includes": [
+        "Full image backup of each PC",
+        "Ransomware behaviour protection",
+        "Restore from the cloud"
+      ],
+      "solves": "Accounts and drawings saved on one computer only"
+    },
+    {
+      "sku": "DEMO-ACRONIS-SRV",
+      "name": "Acronis Cyber Protect (server backup, per licence)",
+      "category": "backup",
+      "billing": "Monthly",
+      "monthly_myr": 382.99,
+      "annual_myr": 4595.88,
+      "verify_status": "official",
+      "source": "vendor.example/acronis/backup/server",
+      "includes": [
+        "Whole-server disaster recovery",
+        "The website shows an 'as low as' price; the actual price depends on the setup"
+      ],
+      "solves": "Your own server or ERP database has no disaster recovery",
+      "note": "The flat 'Acronis 500GB RM1,136' used in old code does not exist; we price by device or server licence"
+    },
+    {
+      "sku": "DEMO-VPS-C1",
+      "name": "NVMe VPS C1",
+      "category": "compute",
+      "billing": "Monthly",
+      "monthly_myr": 45.0,
+      "annual_myr": 540.0,
+      "verify_status": "to_verify",
+      "source": "vendor.example/servers/nvme-vps",
+      "includes": [
+        "Monthly fees across the C1-C10 range are confirmed between 45 and 692, but the price for each exact spec is not verified one by one"
+      ],
+      "solves": "Runs the WhatsApp webhook middleware, auto-replies and your own knowledge base"
+    },
+    {
+      "sku": "DEMO-ECOM-STANDARD",
+      "name": "Ecommerce 12 Standard online store package",
+      "category": "ecommerce",
+      "billing": "Annual",
+      "annual_myr": 3099.0,
+      "verify_status": "official",
+      "source": "vendor.example/ecommerce",
+      "includes": [
+        "An online store built for you",
+        "Payment and delivery gateway integration"
+      ],
+      "solves": "Retail or wholesale businesses that want to sell online instead of quoting one enquiry at a time"
+    },
+    {
+      "sku": "DEMO-IWB-STARTER",
+      "name": "Instant Website 13 Starter (done-for-you website)",
+      "category": "webdesign",
+      "billing": "Monthly",
+      "monthly_myr": 75.9,
+      "one_off_myr": 900.0,
+      "verify_status": "official",
+      "source": "vendor.example/design",
+      "includes": [
+        "The our delivery team builds the whole website for you",
+        "Monthly fee plus a one-off setup fee"
+      ],
+      "solves": "SMEs with nobody in-house who can look after the website"
+    },
+    {
+      "sku": "DEMO-SEO-STANDARD",
+      "name": "SEO Standard package",
+      "category": "marketing",
+      "billing": "Monthly",
+      "monthly_myr": 2288.0,
+      "annual_myr": 27456.0,
+      "min_term_months": 6,
+      "verify_status": "official",
+      "source": "vendor.example/digital-sme",
+      "includes": [
+        "Keyword and content work",
+        "6-month minimum term"
+      ],
+      "solves": "You have a website but no organic traffic, and every customer comes from referrals"
+    },
+    {
+      "sku": "DEMO-AI-AGENT",
+      "name": "AI Agent / AI Website Builder",
+      "category": "ai",
+      "billing": "unknown",
+      "annual_myr": null,
+      "verify_status": "not_priced",
+      "source": "vendor.example/ai",
+      "includes": [
+        "GROW AI strategy launched 2026-08-14; the product line exists but has no published unit price"
+      ],
+      "solves": "Enquiries and customer service after hours and on public holidays, with nobody on duty",
+      "note": "The blueprint may recommend this in words only; no amount may be written in. Ask our sales team for a price."
+    }
+  ],
+  "bundles": {
+    "phase1_foundation": {
+      "name": "Phase 1 Foundation: a trusted front door and a basic safety net",
+      "items": [
+        "DEMO-DOM-COM",
+        "DEMO-WP17-BUSINESS",
+        "DEMO-MAIL-PRO-10U",
+        "DEMO-CF-BOOSTER-PERSONAL"
+      ],
+      "annual_myr": 1514.18,
+      "derivation": "55.70 + 527.88 + 831.60 + 99.00",
+      "suits": "6-15 staff, RM 1M-5M annual turnover, no website today or a website but no company email address",
+      "note": "WP 17 already includes basic SSL and daily backups, so Phase 1 does not need a separate SSL or Acronis purchase. If the customer still wants the accounts backed up on their own PCs, add DEMO-ACRONIS-WKS"
+    },
+    "phase1_with_productivity": {
+      "name": "Phase 1 Plus: with 10 seats of company office software",
+      "items": [
+        "DEMO-DOM-COM",
+        "DEMO-WP17-BUSINESS",
+        "DEMO-GWS-STARTER",
+        "DEMO-CF-BOOSTER-PERSONAL"
+      ],
+      "annual_myr": 2241.38,
+      "derivation": "55.70 + 527.88 + (155.88 × 10) + 99.00",
+      "suits": "Teams that already collaborate in Gmail and need their own domain, with documents moving online",
+      "note": "Google Workspace Starter already includes business email, so pick it or DEMO-MAIL-PRO-10U, never both"
+    },
+    "phase2_productivity": {
+      "name": "Phase 2 Efficiency: PC backups and teamwork",
+      "items": [
+        "DEMO-ACRONIS-WKS"
+      ],
+      "annual_myr_per_device": 290.88,
+      "suits": "Finance and other key PCs need a full image backup",
+      "note": "we have no CRM of its own to sell, so the blueprint must say 'use a third party such as Freshsales / HubSpot, hosted on our and never invent an our product"
+    },
+    "phase3_growth": {
+      "name": "Phase 3 Growth: AI coverage and traffic",
+      "items": [
+        "DEMO-AI-AGENT",
+        "DEMO-VPS-C1"
+      ],
+      "annual_myr": 540.0,
+      "suits": "Enquiries answered after hours and on public holidays, plus your own private knowledge base",
+      "note": "The AI Agent part has no published price, so the amount shown counts only the VPS hosting and marks the AI part as 'quote to follow'"
+    }
+  }
+}

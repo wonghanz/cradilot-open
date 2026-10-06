@@ -1,0 +1,35 @@
+# ─── Python 与工具缓存：随时可再生，不进版本库 ─────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ─── 运行期状态：本机演示产生的会话、评分证据链与线索 ───────────────────────
+# 这三样会随每一次演示改变，且 sales_leads.jsonl 存的是客户联系方式。
+data/cradilot_wiki.db
+data/cradilot_wiki.db-journal
+data/cradilot_wiki.db-wal
+data/sales_leads.jsonl
+
+# 下载来的公开漏洞/生命周期数据源，以及由 wiki 重建的向量索引
+data/cache/
+data/lancedb/
+
+# ─── 真实批文与签署文件：绝不进仓库，即使远端是私有仓库也不推 ───────────────
+# 里面是 CIP Spark 融资协议、DPGA、Form A1/A2/A3 等带公司抬头与签署件的文件。
+cradle data/
+
+# ─── 凭据与本机配置：.env.example 进仓库，填好的 .env 永远不进 ───────────────
+.env
+.env.*
+!.env.example
+*.log
+
+# ─── 浏览器与系统杂物 ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini

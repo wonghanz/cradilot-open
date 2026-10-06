@@ -1,0 +1,10 @@
+# Fine-tuning is optional and separate from running the app.
+# Needs a CUDA machine; training a 12B base with QLoRA fits in roughly 24 GB VRAM
+# (see training/qlora_config.json for the budget this was sized against).
+torch>=2.3
+transformers>=4.43
+peft>=0.11
+bitsandbytes>=0.43
+datasets>=2.20
+accelerate>=0.30
+safetensors>=0.4

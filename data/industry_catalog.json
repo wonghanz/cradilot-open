@@ -1,0 +1,286 @@
+{
+  "_comment": "行业目录单一数据源：后端 app.py 与前端 app.js 必须共读本文件，不得再各自内嵌副本。匹配顺序即优先级，第一个命中者胜出。en 用词边界正则：token 以 * 结尾表示前缀匹配（manufactur* -> manufacturing），否则要求整词相等（ai 不匹配 Air / Painting）。zh 用子串匹配（中文无词边界）。大马商号多为巫英混排，故 en 里同时收 Malay 常用词。",
+  "industries": [
+    {
+      "val": "IoT & Smart Hardware Engineering",
+      "label": "IoT & Smart Hardware Engineering",
+      "sub": "Overseas enquiries land in another time zone; firmware and drawings sit on one engineer's machine with no automated off-site copy; nobody answers technical questions after hours.",
+      "en": [
+        "iot",
+        "internet of things",
+        "internet of thing",
+        "embedded",
+        "sensor*",
+        "smart home",
+        "firmware",
+        "hardware engineering"
+      ],
+      "zh": [
+        "物联",
+        "智能硬件",
+        "嵌入式",
+        "传感器",
+        "智能家居",
+        "硬件研发"
+      ]
+    },
+    {
+      "val": "IT, Software & AI Cloud Services",
+      "label": "IT, Software & AI Cloud Services",
+      "sub": "Work reaches customers from free mailboxes instead of a company domain; services run on one server with no SLA and no recovery in another location.",
+      "en": [
+        "ai",
+        "a.i.",
+        "artificial intelligence",
+        "tech*",
+        "software",
+        "saas",
+        "cloud*",
+        "digital*",
+        "cyber*",
+        "informatics*",
+        "automation",
+        "robotic*",
+        "data*",
+        "system*"
+      ],
+      "zh": [
+        "科技",
+        "软件",
+        "算法",
+        "信息",
+        "智能",
+        "平台",
+        "数字",
+        "数据",
+        "系统"
+      ]
+    },
+    {
+      "val": "Auto Parts & Hardware Wholesale",
+      "label": "Auto Parts & Hardware Wholesale",
+      "sub": "Enquiries after closing go unanswered and the order goes to the next supplier; the customer list leaves with the salesperson; paper delivery notes slow the accounts down.",
+      "en": [
+        "auto",
+        "automotive",
+        "motor*",
+        "vehicle*",
+        "spare*",
+        "auto parts",
+        "car parts",
+        "accessor*",
+        "kereta",
+        "tayar",
+        "aksesori",
+        "besi",
+        "hardware"
+      ],
+      "zh": [
+        "汽配",
+        "五金",
+        "零件",
+        "配件",
+        "汽车配件"
+      ]
+    },
+    {
+      "val": "F&B & Cloud Kitchen",
+      "label": "F&B & Cloud Kitchen",
+      "sub": "Night ordering and supply planning depend on hand messages between outlets; ingredient waste and complaint responses lag behind.",
+      "en": [
+        "fnb",
+        "food",
+        "foods",
+        "beverage*",
+        "cafe",
+        "coffee",
+        "kitchen*",
+        "restaurant*",
+        "restoran*",
+        "catering",
+        "snack*",
+        "bake*",
+        "pastry",
+        "pastri*",
+        "makanan",
+        "kedai makan",
+        "minuman"
+      ],
+      "zh": [
+        "餐饮",
+        "食品",
+        "咖啡",
+        "厨房",
+        "糕点",
+        "餐厅"
+      ]
+    },
+    {
+      "val": "Professional Corporate Services",
+      "label": "Professional Corporate Services",
+      "sub": "Client documents move through personal free mailboxes; working papers sit on one employee's machine with no controlled access.",
+      "en": [
+        "account*",
+        "akaunt*",
+        "audit*",
+        "tax",
+        "taxation",
+        "secretar*",
+        "consult*",
+        "legal",
+        "law",
+        "lawyer*",
+        "advocate*",
+        "advisory",
+        "consultancy",
+        "peguam",
+        "perunding"
+      ],
+      "zh": [
+        "咨询",
+        "会计",
+        "税务",
+        "核数",
+        "秘书",
+        "律所"
+      ]
+    },
+    {
+      "val": "Construction & Materials",
+      "label": "Construction & Materials",
+      "sub": "Site sign-off paperwork stays on paper; payment collection and supplier coordination take weeks longer than they should.",
+      "en": [
+        "construction",
+        "contractor*",
+        "building",
+        "build*",
+        "renovat*",
+        "architect*",
+        "cement",
+        "structural",
+        "engineering",
+        "kejuruteraan",
+        "aircond",
+        "electrical",
+        "elektrik*",
+        "plumbing",
+        "binaan",
+        "tukang"
+      ],
+      "zh": [
+        "建筑",
+        "建材",
+        "装修",
+        "施工",
+        "工程"
+      ]
+    },
+    {
+      "val": "Cross-Border Logistics & Haulage",
+      "label": "Cross-Border Logistics & Haulage",
+      "sub": "Customs and vehicle location questions arrive at night and cannot be answered at once; declarations are keyed in by hand from paper.",
+      "en": [
+        "logistic*",
+        "cargo",
+        "freight",
+        "haulage",
+        "transport*",
+        "shipping",
+        "courier*",
+        "warehousing",
+        "trucking",
+        "kurier",
+        "penghantaran"
+      ],
+      "zh": [
+        "物流",
+        "运输",
+        "车队",
+        "报关",
+        "仓储"
+      ]
+    },
+    {
+      "val": "Retail & Multi-store Chain",
+      "label": "Retail & Multi-store Chain",
+      "sub": "Traffic from public channels is never captured, so it cannot be sold to again; stock across outlets is not visible in real time.",
+      "en": [
+        "retail*",
+        "shop*",
+        "store*",
+        "mart",
+        "marts",
+        "boutique*",
+        "grocer*",
+        "minimart",
+        "supermarket*",
+        "provision*",
+        "kedai",
+        "runcit",
+        "pasar*"
+      ],
+      "zh": [
+        "零售",
+        "连锁",
+        "门店",
+        "便利",
+        "手信"
+      ]
+    },
+    {
+      "val": "Manufacturing & Engineering",
+      "label": "Manufacturing & Engineering",
+      "sub": "Raw material supply breaks without warning; workshop hours are lost to re-keying; production data stays on single machines.",
+      "en": [
+        "manufactur*",
+        "factory*",
+        "molding*",
+        "stamping*",
+        "tooling",
+        "packaging",
+        "garment*",
+        "furniture",
+        "foundry*",
+        "printing",
+        "pembuatan",
+        "kilang"
+      ],
+      "zh": [
+        "制造",
+        "加工",
+        "模具",
+        "冲压",
+        "包装"
+      ]
+    },
+    {
+      "val": "Wholesale & Distribution",
+      "label": "Wholesale & Distribution",
+      "sub": "Cross-border and cross-bank reconciliation is slow; customer leads leave when a salesperson leaves.",
+      "en": [
+        "trading",
+        "trade",
+        "trader",
+        "distribut*",
+        "import",
+        "imports",
+        "importer*",
+        "export",
+        "exports",
+        "exporter*",
+        "wholesal*",
+        "suppl*",
+        "pemborong",
+        "pengedar",
+        "eksport",
+        "import"
+      ],
+      "zh": [
+        "批发",
+        "贸易",
+        "进出口",
+        "分销"
+      ]
+    }
+  ]
+}
