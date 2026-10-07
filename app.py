@@ -808,7 +808,7 @@ async def inspect_website(req: WebInspectRequest) -> Dict[str, Any]:
 
 @app.post("/api/pdf/generate")
 async def generate_pdf(payload: Dict[str, Any]):
-    """Generate and stream 6-page institutional PDF blueprint via Typst."""
+    """Generate and stream the blueprint PDF via Typst (8 pages, 9 with option comparisons)."""
     try:
         pdf_bytes = compile_blueprint_pdf(payload)
         company_name = payload.get("metadata", {}).get("company_name", "SME").replace(" ", "_")

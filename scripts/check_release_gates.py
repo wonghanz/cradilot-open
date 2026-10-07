@@ -25,9 +25,10 @@ FORBIDDEN: list[tuple[str, re.Pattern[str], tuple[str, ...]]] = [
      "test_web_scraper.py")),
     ("loopback in docs", re.compile(r"localhost|127\.0\.0\.1"),
      ("test_web_scraper.py", "test_pain_roadmap_evidence_bound.py")),
-    # personal or account identifiers; LICENSE carries the author as copyright holder
+    # personal or account identifiers. README.md and LICENSE are exempt: a CI badge and
+    # a copyright line have to name the owner, and that is attribution, not exposure.
     ("personal handle", re.compile(r"wonghanz|@qq\.com|Hanz", re.I),
-     ("test_ui_integrity.py", "LICENSE")),
+     ("test_ui_integrity.py", "LICENSE", "README.md")),
     # runtime state: sales_leads.jsonl holds customer contact details
     ("committed runtime file", re.compile(r"^data/(cradilot_wiki\.db|sales_leads\.jsonl)$"), ()),
 ]
